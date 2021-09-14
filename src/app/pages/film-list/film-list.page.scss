@@ -1,0 +1,20 @@
+ion-img {
+    width: 150px;
+    margin: 50px auto;
+}
+
+ion-list ion-item {
+    padding: 10px 0px;
+}
+
+.no-more-data-msg {
+    padding: 20px;
+}
+
+.not-found-msg {
+    text-align: center;
+}
+
+.header-ios ion-toolbar:last-of-type {
+    --border-width: 0 0 0px;
+}

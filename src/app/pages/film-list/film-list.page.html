@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Film List</ion-title>
+  </ion-toolbar>
+  <ion-item>
+    <ion-input
+      placeholder="Search film here..."
+      debounce=1000
+      (ionChange)="onUserInput($event)">
+    </ion-input>
+    <ion-button fill=clear mode=ios (click)="onClickClearButton()">
+      <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+    </ion-button>
+  </ion-item>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item *ngFor="let film of films" lines="none">
+      <ion-avatar slot="start">
+        <img *ngIf="film.Poster !== 'N/A'" [src]=film.Poster>
+        <img *ngIf="film.Poster === 'N/A'" src='../../../assets/icon/favicon.svg'>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ film.Title }}</h2>
+        <p>Year: {{ film.Year }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-img *ngIf="!filmsFound" src='../../../assets/gifs/no-results.gif'></ion-img>
+  <p *ngIf="!filmsFound" class="not-found-msg">No films found... try again!</p>
+  <h4 *ngIf="!isMoreData" class="no-more-data-msg">No more films to display...</h4>
+
+  <ion-infinite-scroll threshold="15%" (ionInfinite)="loadMoreData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
