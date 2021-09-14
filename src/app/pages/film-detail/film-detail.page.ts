@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Film } from '../../interfaces/Film';
 
 @Component({
   selector: 'app-film-detail',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilmDetailPage implements OnInit {
 
+  film: Film;
+
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.film = history.state;
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonInput } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { FilmsService } from '../../services/films.service';
 import { Film } from '../../interfaces/Film';
 
@@ -16,7 +17,7 @@ export class FilmListPage {
   isMoreData = true;
   pageNumber = 1;
 
-  constructor(private filmsService: FilmsService) { }
+  constructor(private filmsService: FilmsService, private router: Router) { }
 
   onUserInput(event): void {
     const searchTerm = event.detail.value.trim();
@@ -36,6 +37,10 @@ export class FilmListPage {
     this.pageNumber = 1;
     this.isMoreData = true;
     this.filmsFound = true;
+  }
+
+  onClickFilm(film: Film): void {
+    this.router.navigate(['film-detail'], { state: film });
   }
 
   getFilms(searchTerm: string): void {

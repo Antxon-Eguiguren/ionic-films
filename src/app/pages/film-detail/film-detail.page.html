@@ -3,10 +3,25 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="film-list"></ion-back-button>
     </ion-buttons>
-    <ion-title>Film Detail</ion-title>
+    <ion-title>{{ film.Title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-xs="8" size-md="6">
+          <ion-card *ngIf="film.Title">
+            <img *ngIf="film.Poster !== 'N/A'" [src]=film.Poster>
+            <img *ngIf="film.Poster === 'N/A'" src='../../../assets/icon/favicon.svg'>
+            <ion-card-header>
+              <ion-card-subtitle>{{ film.Year }}</ion-card-subtitle>
+              <ion-card-title>{{ film.Title }}</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>
